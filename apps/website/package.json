@@ -3,14 +3,14 @@
 	"version": "2.0.0",
 	"private": true,
 	"scripts": {
-		"clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
-		"copy_ext_images": "rm -rf public/images && cp -r ../extension/public/images public",
+		"clean": "shx rm -rf .turbo && shx rm -rf node_modules && shx rm -rf dist",
+		"copy_ext_images": "shx rm -rf public/images && shx cp -r ../extension/public/images public",
 		"dev": "concurrently \"yarn copy_ext_images\" \"contentlayer dev\" \"next dev -p 3001\"",
 		"build": "yarn copy_ext_images && contentlayer build && next build",
 		"build:serve": "yarn build && serve -p 3001 ./out",
 		"lint": "next lint",
 		"start": "next start",
-		"deploy": "rm -rf node_modules/.cache && next build && next export && touch out/.nojekyll",
+		"deploy": "shx rm -rf node_modules/.cache && next build && next export && shx touch out/.nojekyll",
 		"postbuild": "next-sitemap",
 		"intl:extract": "formatjs extract 'src/**/*.{ts,tsx}' '../../packages/ui/src/**/*.{ts,tsx}' --ignore='**/*.d.ts' --out-file src/components/layouts/app-page/locales/en.json --format simple --id-interpolation-pattern '[sha512:contenthash:base64:6]'",
 		"intl:compile": "formatjs compile-folder --ast src/components/layouts/app-page/locales src/components/layouts/app-page/locales/compiled"
@@ -45,6 +45,7 @@
 		"concurrently": "^8.2.0",
 		"eslint": "^8.43.0",
 		"typescript": "5.0.4",
-		"serve": "^14.2.1"
+		"serve": "^14.2.1",
+		"shx": "^0.3.4"
 	}
 }

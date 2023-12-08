@@ -21,9 +21,9 @@
 		"test": "jest --clearCache --detectOpenHandles --forceExit --coverage --passWithNoTests",
 		"build": "tsup",
 		"check-types": "tsc --noemit",
-		"eslint": "TIMING=1 eslint src --fix",
+		"eslint": "cross-env TIMING=1 eslint src --fix",
 		"lint": "npm run eslint && npm run check-types",
-		"clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+		"clean": "shx rm -rf .turbo && shx rm -rf node_modules && shx rm -rf dist"
 	},
 	"peerDependencies": {
 		"react": ">=18"
@@ -115,6 +115,8 @@
 		"tsconfig": "*",
 		"tsup": "^7.0.0",
 		"zustand": "^4.3.8",
-		"zustand-store-addons": "^0.1.12"
+		"zustand-store-addons": "^0.1.12",
+		"cross-env": "^7.0.3",
+		"shx": "^0.3.4"
 	}
 }

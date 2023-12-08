@@ -3,13 +3,13 @@
 	"version": "2.0.19",
 	"type": "module",
 	"scripts": {
-		"clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
-		"dev": "DEV_TOOLS=true yarn start:radix",
-		"start:radix": "RADIX=true yarn start",
+		"clean": "shx rm -rf .turbo && shx rm -rf node_modules && shx rm -rf dist",
+		"dev": "cross-env DEV_TOOLS=true yarn start:radix",
+		"start:radix": "cross-env RADIX=true yarn start",
 		"start": "vite --mode development",
-		"build:dev": "DEV_TOOLS=true yarn build:radix",
-		"build:radix": "RADIX=true yarn build",
-		"build": "npm_config_build_from_source=true tsc --build && vite build --mode production",
+		"build:dev": "cross-env DEV_TOOLS=true yarn build:radix",
+		"build:radix": "cross-env RADIX=true yarn build",
+		"build": "cross-env npm_config_build_from_source=true tsc --build && vite build --mode production",
 		"build:copy-as-firefox": "node src/helpers/firefox",
 		"build:release": "yarn build:radix && yarn build:copy-as-firefox",
 		"preview": "vite preview",
@@ -120,6 +120,8 @@
 		"vite-compatible-readable-stream": "^3.6.1",
 		"vite-plugin-fonts": "^0.7.0",
 		"vite-tsconfig-paths": "^4.2.0",
-		"zod": "^3.21.4"
+		"zod": "^3.21.4",
+		"cross-env": "^7.0.3",
+		"shx": "^0.3.4"
 	}
 }
